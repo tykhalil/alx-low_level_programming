@@ -24,4 +24,7 @@ int print_sign(int n)
 		_putchar('-');
 		return (-1);
 	}
+
+	/* Default case if none of the conditions are met */
+	return (0);
 }
