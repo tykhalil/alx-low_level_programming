@@ -1,28 +1,16 @@
-#include <stdio.h>
-
-#include <stdlib.h>
-
-#include <time.h>
-
+#include <main.h>
 /**
-
- * main - Entry point
-
+ * print_alphabet - Prints the alphabet in lowercase.
  *
-
- * Return: Always 0 (success)
-
+ * Return: Always 0 (Success)
  */
-
-
-int main(void)
-
+void print_alphabet(void)
 {
+	int i;
 
-
-printf("_putchar\n");
-
-
-return (0);
-
+	for (i = 97; i<= 122; i++)
+	{
+		_putchar(i)
+	}
+	_putchar('\n');
 }
