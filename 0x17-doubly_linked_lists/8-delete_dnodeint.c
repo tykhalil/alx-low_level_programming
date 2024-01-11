@@ -1,65 +1,29 @@
 #include "lists.h"
-#include <stdlib.h>
 
 /**
- * delete_dnodeint_at_index - delete node at give index
- * @head:list
- * @index:given index
- * Return: -1 or 0
- */
-int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
-{
-	dlistint_t *start;
-	unsigned int i;
-	unsigned int len;
-	len = len_node(&head);
-
-	start = *head;
-	if (*head == NULL)
-		return (-1);
-	if (index == 0)
-	{
-		start = start->next;
-		free(*head);
-		*head = start;
-		if (start != NULL)
-			start->prev = NULL;
-		return (1);
-	}
-	for (i = 0; i <= index - 1; i++)
-	{
-		start = start->next;
-		if (!start)
-			return (-1);
-	}
-	if (len - 1 == index)
-	{
-		start->prev->next = NULL;
-		free(start);
-		return (1);
-	}
-	start->prev->next = start->next;
-	start->next->prev = start->prev;
-	free(start);
-	return (1);
-}
-
-/**
- * len_node - list len
+ * sum_dlistint - returns the sum of all the data (n)
+ * of a doubly linked list
  *
- * @node:list
- * Return:unsigned int
+ * @head: head of the list
+ * Return: sum of the data
  */
-unsigned int len_node(dlistint_t **node)
+int sum_dlistint(dlistint_t *head)
 {
-	unsigned int len = 0;
-	dlistint_t *start;
+	int sum;
 
-	start = *node;
-	while (start != NULL)
+	sum = 0;
+
+	if (head != NULL)
 	{
-		len += 1;
-		start = start->next;
+		while (head->prev != NULL)
+			head = head->prev;
+
+		while (head != NULL)
+		{
+			sum += head->n;
+			head = head->next;
+		}
 	}
-	return (len);
+
+	return (sum);
 }
